@@ -1,0 +1,91 @@
+{
+  "enabled": {
+    "description": "启用群聊考古",
+    "type": "bool",
+    "default": true
+  },
+  "allow_all": {
+    "description": "所有人可用",
+    "type": "bool",
+    "default": false,
+    "hint": "开启后群里任何人都能触发检索；关闭后只允许下面的白名单 QQ。注意开启等于让全群都能翻看本群历史消息。"
+  },
+  "owner_ids": {
+    "description": "白名单 QQ（仅关闭「所有人可用」时生效）",
+    "type": "list",
+    "default": [],
+    "hint": "名单为空时退化为仅群管理员可用。"
+  },
+  "keywords": {
+    "description": "触发词",
+    "type": "list",
+    "default": ["召回"],
+    "hint": "不带斜杠前缀，直接以触发词开头即可；引用了消息时只发触发词本身也能生效。"
+  },
+  "strict_trigger": {
+    "description": "严格匹配触发词",
+    "type": "bool",
+    "default": true,
+    "hint": "开启后「召回 关键词」必须带空格或冒号，避免「召回率提高了」这类日常用语被误触发。关闭则「召回关键词」也能用。"
+  },
+  "group_cooldown_sec": {
+    "description": "群级冷却 (秒)",
+    "type": "int",
+    "default": 10,
+    "hint": "同一个群两次检索的最小间隔，防止多人同时刷屏把机器人占满；0 表示不限制。"
+  },
+  "default_days": {
+    "description": "默认回溯天数",
+    "type": "int",
+    "default": 60,
+    "hint": "查询时向前回溯的天数，实际可查范围不会超过协议端保留的历史。"
+  },
+  "max_items": {
+    "description": "最多返回条数",
+    "type": "int",
+    "default": 30,
+    "hint": "命中过多时按相关度截断。"
+  },
+  "items_per_image": {
+    "description": "每张图片条数",
+    "type": "int",
+    "default": 15,
+    "hint": "超过后自动分多张图片发送。"
+  },
+  "max_search_pages": {
+    "description": "单次查询最多翻页数",
+    "type": "int",
+    "default": 12,
+    "hint": "每页 200 条。翻得越多越慢，12 页约覆盖近一周的活跃群聊。"
+  },
+  "backfill_enabled": {
+    "description": "启动时回填历史",
+    "type": "bool",
+    "default": true,
+    "hint": "首次见到某个群时把可获取的历史消息拉进本地索引，之后查询走本地库，速度快很多。"
+  },
+  "backfill_days": {
+    "description": "回填天数",
+    "type": "int",
+    "default": 90,
+    "hint": "回填多少天内的历史；协议端实际保留多久就回填多久。"
+  },
+  "cache_images": {
+    "description": "缓存消息图片",
+    "type": "bool",
+    "default": true,
+    "hint": "QQ 图片链接有效期很短，不缓存的话几天后再检索只剩占位。"
+  },
+  "max_cache_mb": {
+    "description": "图片缓存上限 (MB)",
+    "type": "int",
+    "default": 800,
+    "hint": "超过后不再下载新图片，已有缓存不受影响。"
+  },
+  "retention_days": {
+    "description": "索引保留天数",
+    "type": "int",
+    "default": 0,
+    "hint": "超过该天数的消息索引会被定期清理，0 表示永久保留。想控制磁盘占用和隐私足迹可以设成 90。"
+  }
+}

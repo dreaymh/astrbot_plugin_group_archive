@@ -1,0 +1,23 @@
+name: astrbot_plugin_group_archive
+display_name: 群聊考古
+short_desc: 按关键词翻出群聊历史消息，拼成一张带头像和时间的图片
+desc: |
+    发送「召回 关键词」即可检索群聊历史中含该关键词的消息，渲染成一张带发送者头像、昵称、精确时间和关键词高亮的图片发出。
+    也支持引用别人的消息后只发「召回」，自动提取被引用内容作为查询词。
+
+    消息靠被动记录 + OneBot 历史接口回填两种方式进入本地 SQLite 索引，检索走本地库，命中 1.5 万条约 3ms，出图约 0.6 秒。
+
+    注意：需要协议端支持 OneBot 扩展接口 `get_group_msg_history`（NapCat / Lagrange / SnowLuma 等均已实现）。
+    可回溯范围取决于协议端与 QQ 服务器保留期，实测约 3 个月；建立本地索引后不受服务器删除影响。
+version: "1.0.0"
+author: dreaymh
+repo: https://github.com/dreaymh/astrbot_plugin_group_archive
+astrbot_version: ">=4.29.0,<5"
+support_platforms:
+    - aiocqhttp
+tags:
+    - qq
+    - group
+    - utility
+    - search
+    - history
