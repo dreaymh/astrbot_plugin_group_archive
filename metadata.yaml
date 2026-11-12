@@ -9,7 +9,7 @@ desc: |
 
     注意：需要协议端支持 OneBot 扩展接口 `get_group_msg_history`（NapCat / Lagrange / SnowLuma 等均已实现）。
     可回溯范围取决于协议端与 QQ 服务器保留期，实测约 3 个月；建立本地索引后不受服务器删除影响。
-version: "1.0.0"
+version: "1.0.1"
 author: dreaymh
 repo: https://github.com/dreaymh/astrbot_plugin_group_archive
 astrbot_version: ">=4.29.0,<5"

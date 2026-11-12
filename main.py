@@ -186,10 +186,13 @@ class GroupArchivePlugin(Star):
         uid = str(event.get_sender_id() or "")
         now = time.time()
         if now - self._last.get(uid, 0) < COOLDOWN_SEC:
+            # 冷却期也要吃掉事件，否则消息会漏给下游 LLM 被别的插件瞎回答
+            event.stop_event()
             return
         # 群级冷却：防止多人同时刷召回把机器人占满
         group_gap = float(self.config.get("group_cooldown_sec", 10) or 0)
         if group_gap > 0 and now - self._group_last.get(sid, 0) < group_gap:
+            event.stop_event()
             return
         self._last[uid] = now
         self._group_last[sid] = now

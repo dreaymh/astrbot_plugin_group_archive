@@ -1,4 +1,4 @@
-{
+﻿{
   "enabled": {
     "description": "启用群聊考古",
     "type": "bool",
@@ -19,7 +19,9 @@
   "keywords": {
     "description": "触发词",
     "type": "list",
-    "default": ["召回"],
+    "default": [
+      "召回"
+    ],
     "hint": "不带斜杠前缀，直接以触发词开头即可；引用了消息时只发触发词本身也能生效。"
   },
   "strict_trigger": {
@@ -37,8 +39,8 @@
   "default_days": {
     "description": "默认回溯天数",
     "type": "int",
-    "default": 60,
-    "hint": "查询时向前回溯的天数，实际可查范围不会超过协议端保留的历史。"
+    "default": 120,
+    "hint": "查询时向前回溯的天数，实际可查范围不会超过协议端保留的历史。默认 120 天覆盖常见的三个月回溯需求。"
   },
   "max_items": {
     "description": "最多返回条数",
